@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <h1>Notification Example</h1>
+    <button id="btnSend">
+      Send Notification
+    </button>
+
+
+    <script type="text/javascript">
+      const btnSend = document.getElementById('btnSend')
+
+      Notification.requestPermission((res) => {
+
+        if (res === 'denied') {
+          console.log('Not allowed! 😐')
+          return
+        }
+
+        btnSend.addEventListener('click', (e) => {
+          const notif = new Notification('Title', {
+            body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit veritatis ad optio, ipsam impedit aliquid ea rerum tenetur officia dolorem voluptate quas atque amet commodi officiis quibusdam eos recusandae numquam.'
+          })
+
+          setTimeout(() => { notif.close() }, 3000)
+        })
+
+      })
+    </script>
+  </body>
+</html>

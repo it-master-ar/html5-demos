@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Video Capture</h1>
+
+    <video width="640" height="480" autoplay id="video"></video>
+    <button id="btnSnap">Snap Photo</button>
+    <canvas id="canvas" width="640" height="480"></canvas>
+
+    <script type="text/javascript">
+      const video = document.getElementById('video')
+      const btnSnap = document.getElementById('btnSnap')
+      const canvas = document.getElementById('canvas')
+      const context = canvas.getContext('2d')
+
+      if (navigator.mediaDevices &&
+        navigator.mediaDevices.getUserMedia) {
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+          .then((stream) => {
+            video.src = window.URL.createObjectURL(stream)
+          })
+      }
+
+      btnSnap.addEventListener('click', () => {
+        context.drawImage(video, 0, 0, 640, 480)
+
+        console.log(canvas.toDataURL("image/jpeg"))
+      })
+
+    </script>
+  </body>
+</html>
