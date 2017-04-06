@@ -6,18 +6,37 @@
   </head>
   <body>
     <h1>Media Players</h1>
-    <video id="video">
-      <source src="assets/dizzy.mp4" type="video/mp4" />
-    </video>
-    <div id="controls">
-      <button id="btnPlay">Play</button>
-      <p id="time"></p>
-    </div>
+
+    <section>
+      <h2>Video</h2>
+      <video id="video">
+        <source src="assets/dizzy.mp4" type="video/mp4" />
+      </video>
+      <div class="controls">
+        <button id="btnPlay">Play</button>
+        <p id="time"></p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Audio</h2>
+      <audio id="audio">
+        <source src="assets/vincent.mp3" type="audio/mp3" />
+      </audio>
+      <div class="controls">
+        <button id="btnPlayAudio">Play</button>
+        <p id="timeAudio"></p>
+      </div>
+    </section>
 
     <script type="text/javascript">
       const video = document.getElementById('video')
       const btnPlay = document.getElementById('btnPlay')
       const time = document.getElementById('time')
+
+      const audio = document.getElementById('audio')
+      const btnPlayAudio = document.getElementById('btnPlayAudio')
+      const timeAudio = document.getElementById('timeAudio')
 
       btnPlay.addEventListener('click', () => {
         if (video.paused) {
@@ -31,6 +50,20 @@
 
       video.addEventListener('timeupdate', () => {
         time.innerHTML = video.currentTime;
+      })
+
+      btnPlayAudio.addEventListener('click', () => {
+        if (audio.paused) {
+          btnPlayAudio.innerHTML = 'Pause'
+          return audio.play()
+        }
+
+        btnPlayAudio.innerHTML = 'Play'
+        audio.pause()
+      })
+
+      audio.addEventListener('timeupdate', () => {
+        timeAudio.innerHTML = audio.currentTime;
       })
     </script>
   </body>
